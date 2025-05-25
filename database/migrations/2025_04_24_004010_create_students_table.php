@@ -11,22 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('students', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('student_id_number');
-            $table->string('email');
-            $table->string('phone_number');
-            $table->date('birth_date');
-            $table->enum('gender', ['Male', 'Female']);
-            $table->enum('status', ['Active', 'Inactive', 'Graduated', 'Dropped Out',]);
-            $table->foreignId('major_id')->constrained(
-                'majors',
-                'id',
-                'majors_student_id'
-            )->onUpdate('cascade')->onDelete('restrict');
-            $table->timestamps();
+            Schema::create('students', function (Blueprint $table) {
+        $table->id();
+        $table->string('name');
+        $table->string('student_id_number');
+        $table->string('email');
+        $table->string('phone_number');
+        $table->date('birth_date');
+        $table->enum('gender', ['Male', 'Female']);
+        $table->enum('status', ['Active', 'Inactive', 'Graduated', 'Dropped Out']);
+        $table->foreignId('major_id')
+            ->constrained('majors')
+            ->onUpdate('cascade')
+            ->onDelete('restrict');
+        $table->timestamps();
         });
+
     }
 
     /**
